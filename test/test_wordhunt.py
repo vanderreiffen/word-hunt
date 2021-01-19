@@ -6,17 +6,15 @@ from unittest import TestCase, TestSuite, TextTestRunner
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 from wordhunt import WordHunt
 
-
 class WordGridTestCase(TestCase):
-    def setUp():
-        self.wh_coord_test = WordHunt("test/colors.pzl")
+    def setUp(self):
+        self.wh_coord_test = WordHunt("colors.pzl")
         self.wh_coord_test.patternSearch()
 
     def test_correct_coordinates(self):
-        self.assertEqual(self.wh_coord_test._word_coords['YELLOW'],["(6,5)","(11,5)"])
-        self.assertEqual(self.wh_coord_test._word_coords['RED'],["(9,2)","(7,2)"])
-        self.assertEqual(self.wh_coord_test._word_coords['BLUE'],["(4,6)","(7,6)"])
-
+        self.assertEqual(self.wh_coord_test._word_coords['YELLOW'], ["(6,5)", "(11,5)"])
+        self.assertEqual(self.wh_coord_test._word_coords['RED'], ["(9,2)", "(7,2)"])
+        self.assertEqual(self.wh_coord_test._word_coords['BLUE'], ["(4,6)", "(7,6)"])
 
     def test_check_duplicates(self):
         self.assertEqual(len(self.wh._word_coords), 4)
@@ -28,9 +26,9 @@ class DuplicateTest(TestCase):
         self.wh.patternSearch()
         self.assertEqual(len(self.wh._word_coords), 1)
 
+
 def suite():
     suite = TestSuite()
-    # suite.addTest(DuplicateTest("test_check_duplicates"))
     suite.addTest(WordGridTestCase("test_correct_coordinates"))
     return suite
 
